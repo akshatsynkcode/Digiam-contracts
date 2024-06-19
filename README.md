@@ -9,9 +9,7 @@ Git installed
 
 ## Setup Instructions
 
-1. Clone the Repository
-sh
-Copy code
+1. Clone the Repository with
 git clone https://github.com/your-username/your-repository.git
 
 2. Install Dependencies with
