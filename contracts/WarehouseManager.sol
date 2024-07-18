@@ -2,9 +2,6 @@
 pragma solidity ^0.8.0;
 
 contract Warehouse {
-    // Enum to represent the various states a warehouse can have
-    enum WarehouseState { Approved, Rejected, UnderProcess, Resubmit }
-
     // Struct to store information about each warehouse
     struct WarehouseInfo {
         string warehouseId; // Unique identifier for the warehouse
@@ -29,7 +26,7 @@ contract Warehouse {
         string designation; // Designation of the warehouse manager/contact person
         string documentType; // Type of document provided for verification
         string documentUrl; // URL to the document provided for verification
-        WarehouseState state; // Current state of the warehouse
+        string state; // Current state of the warehouse
     }
 
     // Mapping to store warehouses using their ID as the key
@@ -38,7 +35,7 @@ contract Warehouse {
 
     // Events to be emitted when a warehouse is created or its state is changed
     event WarehouseCreated(string warehouseId, string warehouseName, string warehouseType);
-    event WarehouseStateChanged(string warehouseId, WarehouseState state);
+    event WarehouseStateChanged(string warehouseId, string state);
 
     /**
      * @dev Creates a new warehouse entry with the provided details.
@@ -133,7 +130,7 @@ contract Warehouse {
             designation: _designation,
             documentType: _documentType,
             documentUrl: _documentUrl,
-            state: WarehouseState.UnderProcess // Default state is UnderProcess
+            state: "UnderProcess" // Default state is UnderProcess
         });
 
         warehouseCount++; // Increment the warehouse count
@@ -147,7 +144,7 @@ contract Warehouse {
      * @param _warehouseId ID of the warehouse to change the state.
      * @param _state New state to set for the warehouse.
      */
-    function changeWarehouseState(string memory _warehouseId, WarehouseState _state) public {
+    function changeWarehouseState(string memory _warehouseId, string memory _state) public {
         // Validate that the warehouse ID is not empty
         require(bytes(_warehouseId).length > 0, "Warehouse ID cannot be empty");
         // Validate that the warehouse exists
@@ -183,7 +180,7 @@ contract Warehouse {
         string memory designation,
         string memory documentType,
         string memory documentUrl,
-        WarehouseState state
+        string memory state
     ) {
         // Validate that the warehouse ID is not empty
         require(bytes(_warehouseId).length > 0, "Warehouse ID cannot be empty");
