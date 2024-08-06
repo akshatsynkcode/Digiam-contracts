@@ -452,7 +452,7 @@
                           "ty": 0
                         }
                       },
-                      "name": "iam_user_id"
+                      "name": "iamUserId"
                     },
                     {
                       "layout": {
@@ -617,7 +617,7 @@
                 "type": 0
               },
               {
-                "name": "iam_user_id",
+                "name": "iamUserId",
                 "type": 0
               },
               {

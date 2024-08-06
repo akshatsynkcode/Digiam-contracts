@@ -22,7 +22,7 @@ contract Warehouse {
         string state;                  // Current state of the warehouse
         string images;                 // Image URLs of the warehouse
         string properties;             // Properties of the warehouse
-        string iam_user_id;            // IAM user ID associated with the warehouse
+        string iamUserId;            // IAM user ID associated with the warehouse
         string description;            // Description of the warehouse
         string coordinates;            // Coordinates of the warehouse location
         string price;                  // Price associated with the warehouse
@@ -63,7 +63,7 @@ contract Warehouse {
             state: "UnderProcess", // Default state is UnderProcess
             images: info.images,
             properties: info.properties,
-            iam_user_id: info.iam_user_id,
+            iamUserId: info.iamUserId,
             description: info.description,
             coordinates: info.coordinates,
             price: info.price,
