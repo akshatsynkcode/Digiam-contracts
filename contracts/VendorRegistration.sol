@@ -18,6 +18,7 @@ contract VendorRegistration {
         string tradeLicenseCopy;
         string ownershipTitleOrLeaseDocument;
         string emiratesIdForRepresentative;
+        string isVerified;  // Verification status as a string
     }
 
     mapping(string => Vendor) public vendors;  // Mapping using vendorId as the key
@@ -38,7 +39,8 @@ contract VendorRegistration {
         string memory _tradeLicenseIssuingAuthority,
         string memory _tradeLicenseCopy,
         string memory _ownershipTitleOrLeaseDocument,
-        string memory _emiratesIdForRepresentative
+        string memory _emiratesIdForRepresentative,
+        string memory _isVerified  // Verification status as a string
     ) public {
         // Ensure the vendor does not already exist
         require(bytes(vendors[_vendorId].vendorId).length == 0, "Vendor already registered.");
@@ -59,7 +61,8 @@ contract VendorRegistration {
             tradeLicenseIssuingAuthority: _tradeLicenseIssuingAuthority,
             tradeLicenseCopy: _tradeLicenseCopy,
             ownershipTitleOrLeaseDocument: _ownershipTitleOrLeaseDocument,
-            emiratesIdForRepresentative: _emiratesIdForRepresentative
+            emiratesIdForRepresentative: _emiratesIdForRepresentative,
+            isVerified: _isVerified  // Set the verification status as a string
         });
     }
 
@@ -72,13 +75,15 @@ contract VendorRegistration {
         string memory _newMobileNumber,
         string memory _newLandlineNumber,
         string memory _newTradeLicense,
+        string memory _newTradeLicenseNumber,  // Add the trade license number in the update function
         string memory _newIssueDate,
         string memory _newExpiryDate,
         string memory _newTradeLicenseIssuingEmirates,
         string memory _newTradeLicenseIssuingAuthority,
         string memory _newTradeLicenseCopy,
         string memory _newOwnershipTitleOrLeaseDocument,
-        string memory _newEmiratesIdForRepresentative
+        string memory _newEmiratesIdForRepresentative,
+        string memory _newIsVerified  // Update the verification status as a string
     ) public {
         // Check if the vendor exists
         require(bytes(vendors[_vendorId].vendorId).length > 0, "Vendor does not exist.");
@@ -91,6 +96,7 @@ contract VendorRegistration {
         vendor.mobileNumber = _newMobileNumber;
         vendor.landlineNumber = _newLandlineNumber;
         vendor.tradeLicense = _newTradeLicense;
+        vendor.tradeLicenseNumber = _newTradeLicenseNumber;  // Update the trade license number
         vendor.issueDate = _newIssueDate;
         vendor.expiryDate = _newExpiryDate;
         vendor.tradeLicenseIssuingEmirates = _newTradeLicenseIssuingEmirates;
@@ -98,6 +104,7 @@ contract VendorRegistration {
         vendor.tradeLicenseCopy = _newTradeLicenseCopy;
         vendor.ownershipTitleOrLeaseDocument = _newOwnershipTitleOrLeaseDocument;
         vendor.emiratesIdForRepresentative = _newEmiratesIdForRepresentative;
+        vendor.isVerified = _newIsVerified;  // Update the verification status as a string
     }
 
     // Function to get vendor details by vendor ID
