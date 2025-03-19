@@ -20,6 +20,8 @@ contract CompanyRegistration {
         string tradeLicenseIssuingEmirates;
         string tradeLicenseIssuingAuthority;
         string tradeLicenseCopy;
+        string ejariDoc; // New field for Ejari document
+        string emiratesId; // New field for Emirates ID
         CompanyStatus status;
     }
 
@@ -50,7 +52,9 @@ contract CompanyRegistration {
         string memory _tradeLicense,
         string memory _tradeLicenseIssuingEmirates,
         string memory _tradeLicenseIssuingAuthority,
-        string memory _tradeLicenseCopy
+        string memory _tradeLicenseCopy,
+        string memory _ejariDoc, // New parameter for Ejari document
+        string memory _emiratesId // New parameter for Emirates ID
     ) public {
         require(bytes(companies[_companyId].companyId).length == 0, "Company already registered");
 
@@ -70,6 +74,8 @@ contract CompanyRegistration {
             tradeLicenseIssuingEmirates: _tradeLicenseIssuingEmirates,
             tradeLicenseIssuingAuthority: _tradeLicenseIssuingAuthority,
             tradeLicenseCopy: _tradeLicenseCopy,
+            ejariDoc: _ejariDoc, // Store Ejari document URL
+            emiratesId: _emiratesId, // Store Emirates ID URL
             status: CompanyStatus.UnderProcess
         });
 
@@ -93,7 +99,9 @@ contract CompanyRegistration {
         string memory _tradeLicense,
         string memory _tradeLicenseIssuingEmirates,
         string memory _tradeLicenseIssuingAuthority,
-        string memory _tradeLicenseCopy
+        string memory _tradeLicenseCopy,
+        string memory _ejariDoc, // New parameter for Ejari document
+        string memory _emiratesId // New parameter for Emirates ID
     ) public companyExists(_companyId) {
         Company storage company = companies[_companyId];
         company.companyName = _companyName;
@@ -110,6 +118,8 @@ contract CompanyRegistration {
         company.tradeLicenseIssuingEmirates = _tradeLicenseIssuingEmirates;
         company.tradeLicenseIssuingAuthority = _tradeLicenseIssuingAuthority;
         company.tradeLicenseCopy = _tradeLicenseCopy;
+        company.ejariDoc = _ejariDoc; // Update Ejari document URL
+        company.emiratesId = _emiratesId; // Update Emirates ID URL
 
         emit CompanyUpdated(_companyId, _companyName, _companyEmail);
     }
@@ -141,6 +151,8 @@ contract CompanyRegistration {
             string memory tradeLicenseIssuingEmirates,
             string memory tradeLicenseIssuingAuthority,
             string memory tradeLicenseCopy,
+            string memory ejariDoc, // Return Ejari document URL
+            string memory emiratesId, // Return Emirates ID URL
             CompanyStatus status
         )
     {
@@ -160,6 +172,8 @@ contract CompanyRegistration {
             company.tradeLicenseIssuingEmirates,
             company.tradeLicenseIssuingAuthority,
             company.tradeLicenseCopy,
+            company.ejariDoc, // Return Ejari document URL
+            company.emiratesId, // Return Emirates ID URL
             company.status
         );
     }
